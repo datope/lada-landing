@@ -196,7 +196,7 @@
 
     /* ── BOTTOM: THUMBNAILS ── */
     .thumbs-bar {
-      padding: 16px 20px 20px;
+      padding: 8px 20px 18px;
       background: rgba(8,13,18,0.6);
       backdrop-filter: blur(16px);
       border-top: 1px solid rgba(255,255,255,0.06);
@@ -206,11 +206,11 @@
       display: flex;
       gap: 8px;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
       flex-wrap: nowrap;
       overflow-x: auto;
       scrollbar-width: none;
-      padding-bottom: 2px;
+      padding-top: 8px;
     }
 
     .thumbs-track::-webkit-scrollbar { display: none; }
@@ -237,7 +237,7 @@
     .thumb.active {
       border-color: var(--green);
       opacity: 1;
-      transform: translateY(-3px);
+      transform: translateY(-4px);
     }
 
     /* ── ICON HELPER ── */
@@ -273,13 +273,6 @@
       <div>
         <div class="stat-value">321h</div>
         <div class="stat-label">Playtime</div>
-      </div>
-    </div>
-    <div class="stat-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#07de20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      <div>
-        <div class="stat-value">6 min</div>
-        <div class="stat-label">Avg Session</div>
       </div>
     </div>
   </div>

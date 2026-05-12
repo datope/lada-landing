@@ -2,8 +2,8 @@ name: Update Stats
 
 on:
   schedule:
-    - cron: '0 * * * *'   # every hour
-  workflow_dispatch:       # manual trigger
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   update:
@@ -17,15 +17,15 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install node-fetch
+      - name: Install Playwright
+        run: npm install playwright && npx playwright install chromium --with-deps
 
       - name: Fetch stats
-        run: node update-stats.js
+        run: node update-stats.mjs
 
-      - name: Commit stats.json if changed
+      - name: Commit if changed
         run: |
           git config user.email "actions@github.com"
           git config user.name "github-actions"
           git add stats.json
-          git diff --staged --quiet || git commit -m "chore: update stats" && git push
+          git diff --staged --quiet || (git commit -m "chore: update stats" && git push)

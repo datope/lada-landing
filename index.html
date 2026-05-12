@@ -257,14 +257,14 @@
     <div class="stat-item">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#07de20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       <div>
-        <div class="stat-value">1.7K</div>
+        <div class="stat-value" id="statPlayers">1.7K</div>
         <div class="stat-label">Players</div>
       </div>
     </div>
     <div class="stat-item">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#07de20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       <div>
-        <div class="stat-value">321h</div>
+        <div class="stat-value" id="statPlaytime">321h</div>
         <div class="stat-label">Playtime</div>
       </div>
     </div>
@@ -300,6 +300,15 @@
 </div>
 
 <script>
+  // Load dynamic stats
+  fetch('stats.json?_=' + Date.now())
+    .then(r => r.json())
+    .then(s => {
+      if (s.players)  document.getElementById('statPlayers').textContent  = s.players;
+      if (s.playtime) document.getElementById('statPlaytime').textContent = s.playtime;
+    })
+    .catch(() => {});
+
   const screenshots = [
     'https://cdn.sbox.game/org/teamx/xproject/screenshots/37266e92-bb6f-45b4-ace5-47d5afbc524e.jpg',
     'https://cdn.sbox.game/org/teamx/xproject/screenshots/88bc1756-d8aa-4ee9-9cca-83925c4453b9.jpg',

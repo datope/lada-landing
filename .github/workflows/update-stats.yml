@@ -2,7 +2,7 @@ name: Update Stats
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 * * * *'   # every hour
   workflow_dispatch:
 
 jobs:
@@ -28,4 +28,4 @@ jobs:
           git config user.email "actions@github.com"
           git config user.name "github-actions"
           git add stats.json
-          git diff --staged --quiet || (git commit -m "chore: update stats" && git push)
+          git diff --staged --quiet && echo "No changes" || (git pull --rebase && git commit -m "chore: update stats" && git push)

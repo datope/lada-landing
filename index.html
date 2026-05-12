@@ -8,6 +8,7 @@
   <meta property="og:title" content="LADA Racing" />
   <meta property="og:description" content="Drive, tune your LADA, and race with other players on a giant open-world map." />
   <meta property="og:image" content="https://cdn.sbox.game/org/teamx/xproject/thumb/de9c8c2f-03d6-4e57-8c5f-b251e1ab70d2.png" />
+  <link rel="icon" href="https://sbox.game/favicon.ico" type="image/x-icon" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -268,6 +269,13 @@
         <div class="stat-label">Playtime</div>
       </div>
     </div>
+    <div class="stat-item" id="statOnlineWrap" style="display:none;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#07de20;animation:pulse 2s infinite;flex-shrink:0;"></div>
+      <div>
+        <div class="stat-value" id="statOnline">0</div>
+        <div class="stat-label">Online Now</div>
+      </div>
+    </div>
   </div>
 
   <!-- CENTER: Hero -->
@@ -306,6 +314,10 @@
     .then(s => {
       if (s.players)  document.getElementById('statPlayers').textContent  = s.players;
       if (s.playtime) document.getElementById('statPlaytime').textContent = s.playtime;
+      if (s.online > 0) {
+        document.getElementById('statOnline').textContent = s.online;
+        document.getElementById('statOnlineWrap').style.display = 'flex';
+      }
     })
     .catch(() => {});
 

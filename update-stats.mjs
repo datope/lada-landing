@@ -1,22 +1,28 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
 
-const fallback = JSON.parse(fs.existsSync('stats.json') ? fs.readFileSync('stats.json') : '{}');
+const existing = fs.existsSync('stats.json') ? JSON.parse(fs.readFileSync('stats.json')) : {};
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
-
 await page.goto('https://sbox.game/teamx/xproject', { waitUntil: 'networkidle', timeout: 30000 });
-
+await page.waitForTimeout(2000);
 const text = await page.locator('body').innerText();
 await browser.close();
 
-const players  = text.match(/([\d.,]+k?)\s*players/i);
-const hours    = text.match(/([\d.,]+)\s*hours?\s*playtime/i);
+// Total players: "1.7k players" — require k suffix to avoid matching small online count
+const total   = text.match(/([\d.]+k)\s*players/i);
+// Online: "● 3" pattern (live dot + number)
+const online  = text.match(/●\s*(\d+)/);
+// Playtime: "324 hours playtime"
+const hours   = text.match(/([\d.,]+)\s*hours?\s*playtime/i);
+
+const onlineNum = online ? parseInt(online[1]) : 0;
 
 const stats = {
-  players:  players ? players[1].toUpperCase() : (fallback.players ?? '1.7K'),
-  playtime: hours   ? Math.round(parseFloat(hours[1].replace(/,/g,''))) + 'h' : (fallback.playtime ?? '321h'),
+  players:  total  ? total[1].toUpperCase()                                 : (existing.players  ?? '1.7K'),
+  playtime: hours  ? Math.round(parseFloat(hours[1].replace(/,/g,''))) + 'h' : (existing.playtime ?? '321h'),
+  online:   onlineNum > 0 ? onlineNum : 0,
   updated:  new Date().toISOString(),
 };
 

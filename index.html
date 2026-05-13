@@ -9,6 +9,8 @@
   <meta property="og:description" content="Drive, tune your LADA, and race with other players on a giant open-world map." />
   <meta property="og:image" content="https://cdn.sbox.game/org/teamx/xproject/thumb/de9c8c2f-03d6-4e57-8c5f-b251e1ab70d2.png" />
   <link rel="icon" href="https://sbox.game/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -153,16 +155,16 @@
 
     .hero-title {
       font-family: 'Ubuntu', sans-serif;
-      font-size: clamp(48px, 11vw, 108px);
+      font-size: clamp(52px, 11vw, 108px);
       font-weight: 700;
-      line-height: 0.9;
+      line-height: 1.0;
       letter-spacing: -3px;
       background: linear-gradient(140deg, #ffffff 25%, var(--green) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 18px;
-      padding: 0 4px;
+      padding: 4px 6px;
     }
 
     .hero-sub {
@@ -248,46 +250,52 @@
     svg { display: block; }
 
     /* ── MOBILE ── */
-    @media (max-width: 480px) {
+    @media (max-width: 540px) {
+      html, body { height: 100dvh; }
+      .page { height: 100dvh; }
+
       .hero-title {
-        font-size: clamp(42px, 14vw, 72px);
+        font-size: clamp(44px, 15vw, 72px);
         letter-spacing: -1px;
+        line-height: 1.0;
       }
       .hero {
-        padding: 16px 16px;
+        padding: 12px 16px;
+        justify-content: center;
       }
       .hero-sub {
-        font-size: 14px;
-        margin-bottom: 24px;
+        font-size: 13px;
+        margin-bottom: 20px;
+        max-width: 100%;
       }
       .hero-badge {
         font-size: 9px;
-        letter-spacing: 1.5px;
-        padding: 4px 10px;
-        margin-bottom: 14px;
+        letter-spacing: 1px;
+        padding: 3px 10px;
+        margin-bottom: 12px;
       }
       .btn {
-        padding: 11px 18px;
+        padding: 10px 16px;
         font-size: 13px;
       }
+
+      /* Stats: keep on one line, compact */
       .stats-bar {
-        padding: 12px 16px;
+        padding: 10px 8px;
+        flex-wrap: nowrap;
       }
       .stat-item {
-        padding: 0 14px;
+        padding: 0 10px;
+        gap: 6px;
       }
-      .stat-value {
-        font-size: 16px;
-      }
-      .stat-label {
-        font-size: 9px;
-      }
-      .thumb {
-        width: 68px;
-      }
-      .thumbs-bar {
-        padding: 6px 12px 14px;
-      }
+      .stat-item svg { display: none; }
+      .stat-value { font-size: 15px; }
+      .stat-label { font-size: 9px; letter-spacing: 0; }
+
+      /* Thumbs: smaller, still scrollable */
+      .thumbs-bar { padding: 5px 8px 10px; }
+      .thumbs-track { gap: 5px; padding-top: 6px; }
+      .thumb { width: 58px; }
     }
   </style>
 </head>
@@ -328,7 +336,7 @@
   <div class="hero">
     <div class="hero-badge">
       <div class="badge-dot"></div>
-      Beta Release &nbsp;·&nbsp; s&amp;box · Free
+      Beta Release &nbsp;·&nbsp; s&amp;box
     </div>
     <h1 class="hero-title">LADA<br>Racing</h1>
     <p class="hero-sub">
@@ -369,13 +377,13 @@
     .catch(() => {});
 
   const screenshots = [
-    'https://cdn.sbox.game/org/teamx/xproject/screenshots/37266e92-bb6f-45b4-ace5-47d5afbc524e.jpg',
-    'https://cdn.sbox.game/org/teamx/xproject/screenshots/88bc1756-d8aa-4ee9-9cca-83925c4453b9.jpg',
-    'https://cdn.sbox.game/org/teamx/xproject/screenshots/11a7c231-d6bb-4426-9bd7-fde778cfb3e2.jpg',
-    'https://cdn.sbox.game/org/teamx/xproject/screenshots/f88ab88f-455d-4720-b0de-f96208f36af3.jpg',
-    'https://cdn.sbox.game/org/teamx/xproject/screenshots/d349db38-d902-4a02-933a-37852ef29778.jpg',
-    'https://cdn.sbox.game/org/teamx/xproject/screenshots/320dc0dd-ec92-45cc-9ccd-8b3cf30c29a3.jpg',
-    'https://cdn.sbox.game/org/teamx/xproject/screenshots/e924097b-43f9-48bf-89d6-b1c247a64c07.jpg',
+    './screenshots/37266e92-bb6f-45b4-ace5-47d5afbc524e.jpg',
+    './screenshots/88bc1756-d8aa-4ee9-9cca-83925c4453b9.jpg',
+    './screenshots/11a7c231-d6bb-4426-9bd7-fde778cfb3e2.jpg',
+    './screenshots/f88ab88f-455d-4720-b0de-f96208f36af3.jpg',
+    './screenshots/d349db38-d902-4a02-933a-37852ef29778.jpg',
+    './screenshots/320dc0dd-ec92-45cc-9ccd-8b3cf30c29a3.jpg',
+    './screenshots/e924097b-43f9-48bf-89d6-b1c247a64c07.jpg',
   ];
 
   let current = 0;

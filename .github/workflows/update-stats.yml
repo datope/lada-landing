@@ -2,8 +2,12 @@ name: Update Stats
 
 on:
   schedule:
-    - cron: '0 * * * *'   # every hour
+    - cron: '0 * * * *'   # every hour at :00 UTC
   workflow_dispatch:
+
+concurrency:
+  group: update-stats-${{ github.repository }}
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -13,9 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Sync with origin (before stats.json is modified)
+        run: git pull --rebase origin ${{ github.ref_name }}
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install Playwright
         run: npm install playwright && npx playwright install chromium --with-deps
@@ -28,4 +35,4 @@ jobs:
           git config user.email "actions@github.com"
           git config user.name "github-actions"
           git add stats.json
-          git diff --staged --quiet && echo "No changes" || (git pull --rebase && git commit -m "chore: update stats" && git push)
+          git diff --staged --quiet && echo "No changes" || (git commit -m "chore: update stats" && git push)

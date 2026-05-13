@@ -9,6 +9,7 @@
   <meta property="og:description" content="Drive, tune your LADA, and race with other players on a giant open-world map." />
   <meta property="og:image" content="https://cdn.sbox.game/org/teamx/xproject/thumb/de9c8c2f-03d6-4e57-8c5f-b251e1ab70d2.png" />
   <link rel="icon" href="https://sbox.game/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -151,15 +152,17 @@
     }
 
     .hero-title {
-      font-size: clamp(56px, 12vw, 108px);
-      font-weight: 900;
+      font-family: 'Ubuntu', sans-serif;
+      font-size: clamp(48px, 11vw, 108px);
+      font-weight: 700;
       line-height: 0.9;
-      letter-spacing: -4px;
+      letter-spacing: -3px;
       background: linear-gradient(140deg, #ffffff 25%, var(--green) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 18px;
+      padding: 0 4px;
     }
 
     .hero-sub {
@@ -243,6 +246,49 @@
 
     /* ── ICON HELPER ── */
     svg { display: block; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: clamp(42px, 14vw, 72px);
+        letter-spacing: -1px;
+      }
+      .hero {
+        padding: 16px 16px;
+      }
+      .hero-sub {
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+      .hero-badge {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+        padding: 4px 10px;
+        margin-bottom: 14px;
+      }
+      .btn {
+        padding: 11px 18px;
+        font-size: 13px;
+      }
+      .stats-bar {
+        padding: 12px 16px;
+      }
+      .stat-item {
+        padding: 0 14px;
+      }
+      .stat-value {
+        font-size: 16px;
+      }
+      .stat-label {
+        font-size: 9px;
+      }
+      .thumb {
+        width: 68px;
+      }
+      .thumbs-bar {
+        padding: 6px 12px 14px;
+      }
+    }
   </style>
 </head>
 <body>

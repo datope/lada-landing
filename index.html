@@ -13,6 +13,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'RoadSign';
+      src: url('./russianroadsign.otf') format('opentype');
+      font-weight: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nikkyo';
+      src: url('./NikkyouSans.ttf') format('truetype');
+      font-weight: normal;
+      font-display: swap;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -37,15 +49,13 @@
       background-size: cover;
       background-position: center;
       opacity: 0;
-      transition: opacity 1s ease;
-      transform: scale(1.04);
-      transition: opacity 1s ease, transform 8s ease;
+      filter: brightness(0.42);
+      will-change: opacity;
+      transition: opacity 1.2s ease;
     }
 
     .bg-layer.active {
       opacity: 1;
-      transform: scale(1.0);
-      filter: brightness(0.28);
     }
 
     .bg-overlay {
@@ -154,17 +164,17 @@
     }
 
     .hero-title {
-      font-family: 'Ubuntu', sans-serif;
-      font-size: clamp(52px, 11vw, 108px);
-      font-weight: 700;
-      line-height: 1.0;
-      letter-spacing: -3px;
+      font-family: 'RoadSign', 'Ubuntu', sans-serif;
+      font-size: clamp(52px, 12vw, 112px);
+      font-weight: normal;
+      line-height: 1.05;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       background: linear-gradient(140deg, #ffffff 25%, var(--green) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 18px;
-      padding: 4px 6px;
     }
 
     .hero-sub {
@@ -255,9 +265,8 @@
       .page { height: 100dvh; }
 
       .hero-title {
-        font-size: clamp(44px, 15vw, 72px);
-        letter-spacing: -1px;
-        line-height: 1.0;
+        font-size: clamp(36px, 13vw, 64px);
+        letter-spacing: 1px;
       }
       .hero {
         padding: 12px 16px;

@@ -167,14 +167,26 @@
       font-family: 'NikkyouSans', 'RoadSign', sans-serif;
       font-size: clamp(52px, 12vw, 112px);
       font-weight: normal;
-      line-height: 1.05;
-      letter-spacing: 2px;
+      line-height: 1.1;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      background: linear-gradient(140deg, #ffffff 25%, var(--green) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
       margin-bottom: 18px;
+    }
+
+    .title-white {
+      color: #ffffff;
+      text-shadow:
+        0 0 20px rgba(255,255,255,0.95),
+        0 0 50px rgba(255,255,255,0.7),
+        0 0 90px rgba(255,255,255,0.4);
+    }
+
+    .title-red {
+      color: #ff2020;
+      text-shadow:
+        0 0 20px rgba(255,30,30,1),
+        0 0 50px rgba(255,30,30,0.75),
+        0 0 90px rgba(255,30,30,0.45);
     }
 
     .hero-sub {
@@ -265,7 +277,7 @@
       .page { height: 100dvh; }
 
       .hero-title {
-        font-size: clamp(36px, 13vw, 64px);
+        font-size: clamp(36px, 12vw, 64px);
         letter-spacing: 1px;
       }
       .hero {
@@ -347,7 +359,7 @@
       <div class="badge-dot"></div>
       Beta Release &nbsp;·&nbsp; s&amp;box
     </div>
-    <h1 class="hero-title">LADA<br>Racing</h1>
+    <h1 class="hero-title"><span class="title-white">LADA</span> <span class="title-red">ЯACING</span></h1>
     <p class="hero-sub">
       Drive, tune your LADA, and race with other players on a giant open-world map.
     </p>
